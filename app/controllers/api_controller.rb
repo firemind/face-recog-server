@@ -33,10 +33,11 @@ class ApiController < ApplicationController
     puts `bin/align.sh #{RAW_PATH} #{CLASSIFY_ALIGNED_PATH}`
     aligned_path = File.join(CLASSIFY_ALIGNED_PATH, "sample", "sample.png")
     if File.exists? aligned_path
-      cmd = "bin/predict.sh #{aligned_path} | tail -1"
+      cmd = "bin/predict.sh #{aligned_path}"
       puts cmd
-      prediction= `#{cmd}`.chomp
-      render plain: prediction
+      prediction= `#{cmd}`
+      puts prediction
+      render plain: prediction.chomp.split("\n").last
     else
       raise "Error aligning #{aligned_path}"
     end
