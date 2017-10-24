@@ -9,4 +9,12 @@ class EmbeddingClient
     })
     JSON.parse(resp.body)["embedding"][0]
   end
+
+  def embed_multi(images)
+    resp = RestClient.post(@base_url+"embed", {
+        images: images
+    })
+    JSON.parse(resp.body)["embedding"]
+  end
+
 end
