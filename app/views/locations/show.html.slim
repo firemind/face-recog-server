@@ -1,8 +1,8 @@
-h1 Trackings
+h1= "Trackings in Location #{@location}"
 
 table.table
   tbody
-    - @trackings.each do |tracking|
+    - @location.trackings.each do |tracking|
       tr
         td
           span.label=tracking.label
@@ -10,4 +10,3 @@ table.table
           a href=history_path(tracking.label)
             =image_tag tracking.image.url
         td=tracking.created_at
-        td=tracking.location

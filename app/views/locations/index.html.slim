@@ -1,0 +1,17 @@
+h1 Locations
+
+table
+  thead
+    tr
+      th name
+      th last
+      th num
+  tbody
+    - @locations.each do |loc|
+      tr
+        td=loc.name
+        td
+          - if t = loc.trackings.last
+            = image_tag t.image.url
+        td= loc.trackings.count
+        td= link_to "Show all", location_path(loc), class: "button"

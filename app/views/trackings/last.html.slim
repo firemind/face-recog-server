@@ -1,9 +1,15 @@
-h1 Last Tracking
+.card
+  .card-divider
+    h1
+      |Last Tracking
+      span.label=@tracking.label
+  a href=history_path(@tracking.label)
+    =image_tag @tracking.image.url
+  .card-section
+    p=@tracking.created_at
+  .card-section
+    p
+      b
+        |Location:
+        =<@tracking.location
 
-table
-  tr
-    td=@tracking.label
-    td
-      a href=history_path(@tracking.label)
-        =image_tag @tracking.image.url
-    td=@tracking.created_at

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :histories
   resources :trackings
   resources :labels
+  resources :locations
 
   root "trackings#last"
 end

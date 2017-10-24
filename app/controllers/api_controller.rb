@@ -47,7 +47,12 @@ class ApiController < ApplicationController
     if params[:image]
       ec = EmbeddingClient.new
       emb = ec.embed(params[:image])
-      tracking = Tracking.create(image: params[:image])
+      meta = JSON.parse(params[:data])
+      location = Location.where(name: meta["location"]).first_or_create!
+      tracking = Tracking.create(
+          location: location,
+          image: params[:image]
+      )
       tc = TrackingClient.new
       label = tc.track(tracking.id, emb)
       tracking.label = label
