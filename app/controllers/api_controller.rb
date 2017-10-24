@@ -43,9 +43,22 @@ class ApiController < ApplicationController
     end
   end
 
-  def test
-    sleep 1
-    render plain: "done"
+  def track
+    if params[:image]
+      ec = EmbeddingClient.new
+      emb = ec.embed(params[:image])
+      tracking = Tracking.create(image: params[:image])
+      tc = TrackingClient.new
+      label = tc.track(tracking.id, emb)
+      tracking.label = label
+      tracking.save!
+      render json: {
+          label: tracking.label,
+          history_url: history_url(tracking.label)
+      }
+    else
+      render error: "No image given"
+    end
   end
 
   private

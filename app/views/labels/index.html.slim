@@ -1,0 +1,9 @@
+h1 Labels
+
+table
+  - @labels.each do |label|
+    tr
+      td=label
+      td
+        a href=history_path(label)
+          =image_tag Tracking.where(label: label).last.image.url

@@ -22,6 +22,13 @@ gem 'puma', '~> 3.7'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
+gem 'sqlite3'
+
+gem "paperclip", "~> 5.1.0"
+gem 'slim'
+gem 'foundation-rails'
+gem 'therubyracer', platforms: :ruby
+gem 'coffee-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -37,5 +44,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem "tensorflow_serving_client", path: "gems"
 gem 'rmagick'
+gem 'pry-rails'
+gem 'rest-client'
+

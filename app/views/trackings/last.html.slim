@@ -1,0 +1,9 @@
+h1 Last Tracking
+
+table
+  tr
+    td=@tracking.label
+    td
+      a href=history_path(@tracking.label)
+        =image_tag @tracking.image.url
+    td=@tracking.created_at

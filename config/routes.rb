@@ -3,5 +3,10 @@ Rails.application.routes.draw do
   
   post '/store' => 'api#store'
   post '/classify' => 'api#classify'
-  post '/test' => 'api#test'
+  post '/track' => 'api#track'
+  resources :histories
+  resources :trackings
+  resources :labels
+
+  root "trackings#last"
 end
