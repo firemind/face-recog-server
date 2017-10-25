@@ -26,6 +26,7 @@ gem 'sqlite3'
 
 gem "paperclip", "~> 5.1.0"
 gem 'slim'
+gem 'jquery-rails'
 gem 'foundation-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'coffee-rails'
@@ -44,7 +45,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'rmagick'
 gem 'pry-rails'
 gem 'rest-client'
 

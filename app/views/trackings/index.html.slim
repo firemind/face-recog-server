@@ -5,9 +5,10 @@ table.table
     - @trackings.each do |tracking|
       tr
         td
-          span.label=tracking.label
+          span.label  style="background-color:#{label_color(tracking.label)}"
+            =tracking.label
         td
           a href=history_path(tracking.label)
-            =image_tag tracking.image.url
+            =image_tag tracking.image.url, style:"border: 5px solid #{label_color(tracking.label)}"
         td=tracking.created_at
         td=tracking.location
