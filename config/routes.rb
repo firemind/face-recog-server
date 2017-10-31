@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   resources :histories
   resources :trackings
   resources :labels
-  resources :locations
+  resources :locations do
+    member do
+      get :current
+    end
+  end
   resources :celebs
 
   root "trackings#last"

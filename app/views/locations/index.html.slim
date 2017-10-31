@@ -15,3 +15,4 @@ table
             = image_tag t.image.url
         td= loc.trackings.count
         td= link_to "Show all", location_path(loc), class: "button"
+        td= link_to "Current", current_location_path(loc), class: "button"

@@ -1,0 +1,22 @@
+h1=@location.name
+- @tracking = @location.trackings.last
+.card
+  .card-divider
+    h1
+      |Last Tracking
+      span.label=@tracking.label
+  = image_tag @tracking.image.url, usemap: "#themap", width: 200, class: "facemap"
+  map name="themap"
+    area shape="rect" coords="60,40,157,156" href=history_path(@tracking.label) title="#{@tracking.label}" data-maphilight='{"strokeColor":"#{label_color(@tracking.label)[1..6]}","strokeWidth":3,"fill":false,"alwaysOn":true}'
+  .card-section
+    p=@tracking.created_at
+
+.row.small-up-5
+  -@history.each do |tracking|
+    .column
+      .card
+        .card-divider
+          span.label=tracking.location
+        = image_tag tracking.image.url, width: 200, class: "facemap"
+        .card-section
+          p=tracking.created_at
