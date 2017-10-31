@@ -1,0 +1,10 @@
+h1=@celeb
+.row.small-up-5
+  - @celeb.samples.each do |sample|
+    .column
+      .card
+        .card-section
+          = image_tag sample.image.url, width: 160, height: 160
+        .card-section
+          - if sample.emb
+            span.label.success title=sample.emb embedded

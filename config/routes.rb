@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'celebs/index'
+
+  get 'celebs/show'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   post '/store' => 'api#store'
@@ -8,6 +12,7 @@ Rails.application.routes.draw do
   resources :trackings
   resources :labels
   resources :locations
+  resources :celebs
 
   root "trackings#last"
 end

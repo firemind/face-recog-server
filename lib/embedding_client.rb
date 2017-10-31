@@ -4,16 +4,14 @@ class EmbeddingClient
   end
   
   def embed(image)
-    resp = RestClient.post(@base_url+"embed", {
-        images: image
-    })
+    params = {images: [image]}
+    resp = RestClient.post(@base_url+"embed", params)
     JSON.parse(resp.body)["embedding"][0]
   end
 
   def embed_multi(images)
-    resp = RestClient.post(@base_url+"embed", {
-        images: images
-    })
+    params = {images: images}
+    resp = RestClient.post(@base_url+"embed", params)
     JSON.parse(resp.body)["embedding"]
   end
 

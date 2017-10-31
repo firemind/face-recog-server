@@ -1,0 +1,12 @@
+h1 Celebs
+.row.small-up-5
+  - @celebs.each do |celeb|
+    .column
+      .card
+        .card-divider
+          b=celeb
+        .card-section
+          a href=celeb_path(celeb)
+            = image_tag celeb.samples.first.image.url, width: 160, height: 160
+        .card-section
+          span.label=celeb.samples.size
