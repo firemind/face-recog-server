@@ -1,6 +1,6 @@
 class TrackingClient
   def initialize
-    @base_url = "http://localhost:5002/"
+    @base_url = Rails.configuration.x.tracking_server
   end
   
   def track(id, embedding)

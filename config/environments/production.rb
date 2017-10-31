@@ -77,4 +77,8 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
+
+  config.x.embedding_server =  "http://172.17.0.1:5001/"
+  config.x.tracking_server  =  "http://172.17.0.1:5002/"
+  config.x.face_mind_server =  "http://172.17.0.1:5004/"
 end

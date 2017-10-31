@@ -1,6 +1,6 @@
 class FaceMindClient
   def initialize
-    @base_url = "http://localhost:5004/"
+    @base_url = Rails.configuration.x.face_mind_server
   end
   
   def store(id, embedding)
