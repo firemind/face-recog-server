@@ -56,10 +56,10 @@ class ApiController < ApplicationController
           top: meta['top']
       )
       puts meta
-      puts tracking.inspect
       tc = TrackingClient.new
       label = tc.track(tracking.id, emb)
       tracking.label = label
+      puts tracking.inspect
       tracking.save!
       render json: {
           label: tracking.label,
