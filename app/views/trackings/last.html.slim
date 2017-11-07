@@ -1,16 +1,18 @@
-.card
-  .card-divider
-    h1
-      |Last Tracking
-      span.label=@tracking.label
-  = image_tag @tracking.image.url, usemap: "#themap", width: 200, class: "facemap"
-  map name="themap"
-    area shape="rect" coords=@tracking.coords href=history_path(@tracking.label) title="#{@tracking.label}" data-maphilight='{"strokeColor":"#{label_color(@tracking.label)[1..6]}","strokeWidth":3,"fill":false,"alwaysOn":true}'
-  .card-section
-    p=@tracking.created_at
-  .card-section
-    p
-      b
-        |Location:
-        =<@tracking.location
-
+- if @tracking
+  .card
+    .card-divider
+      h1
+        |Last Tracking
+        span.label=@tracking.label
+    = image_tag @tracking.image.url, usemap: "#themap", width: 200, class: "facemap"
+    map name="themap"
+      area shape="rect" coords=@tracking.coords href=history_path(@tracking.label) title="#{@tracking.label}" data-maphilight='{"strokeColor":"#{label_color(@tracking.label)[1..6]}","strokeWidth":3,"fill":false,"alwaysOn":true}'
+    .card-section
+      p=@tracking.created_at
+    .card-section
+      p
+        b
+          |Location:
+          =<@tracking.location
+- else
+  p No trackings yet
