@@ -40,27 +40,31 @@ class ApiController < ApplicationController
   def track
     if params[:image]
       meta = JSON.parse(params[:data])
-      emb = meta['embedding']
-      unless emb
+      puts meta
+      embs = meta['embeddings']
+      unless embs
         puts "No Embedding sent"
         ec = EmbeddingClient.new
-        emb = ec.embed(params[:image])
+        embs = ec.embed(params[:image])
       end
       location = Location.where(name: meta["location"]).first_or_create!
-      tracking = Tracking.create(
-          location: location,
-          image: params[:image],
-          width: meta['width'],
-          height: meta['height'],
-          left: meta['left'],
-          top: meta['top']
-      )
-      puts meta
-      tc = TrackingClient.new
-      label = tc.track(tracking.id, emb)
-      tracking.label = label
-      puts tracking.inspect
-      tracking.save!
+      meta['positions'].each_with_index do |pos, ix|
+        Tracking.transaction do
+          tracking = Tracking.create(
+              location: location,
+              image: params[:image],
+              width:  pos['width'],
+              height: pos['height'],
+              left:   pos['left'],
+              top:    pos['top']
+          )
+          tc = TrackingClient.new
+          label = tc.track(tracking.id, embs[ix])
+          tracking.label = label
+          puts tracking.inspect
+          tracking.save!
+        end
+      end
       render json: {
           label: tracking.label,
           history_url: history_url(tracking.label)
