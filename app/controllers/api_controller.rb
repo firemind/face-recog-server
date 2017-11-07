@@ -48,6 +48,7 @@ class ApiController < ApplicationController
         embs = ec.embed(params[:image])
       end
       location = Location.where(name: meta["location"]).first_or_create!
+      trackings = []
       meta['positions'].each_with_index do |pos, ix|
         puts pos.inspect
         Tracking.transaction do
@@ -64,11 +65,12 @@ class ApiController < ApplicationController
           tracking.label = label
           puts tracking.inspect
           tracking.save!
+          trackings << tracking
         end
       end
       render json: {
-          label: tracking.label,
-          history_url: history_url(tracking.label)
+          label: trackings.map(&:label),
+          history_url: trackings.map{|t| history_url(t.label)}
       }
     else
       render error: "No image given"
