@@ -4,9 +4,7 @@
       h1
         |Last Tracking
         span.label=@tracking.label
-    = image_tag @tracking.image.url, usemap: "#themap", width: Paperclip::Geometry.from_file(@tracking.image).width, class: "facemap"
-    map name="themap"
-      area shape="rect" coords=@tracking.coords href=history_path(@tracking.label) title="#{@tracking.label}" data-maphilight='{"strokeColor":"#{label_color(@tracking.label)[1..6]}","strokeWidth":3,"fill":false,"alwaysOn":true}'
+    = render partial: 'shared/tracking_with_map', locals: {tracking: @tracking}
     .card-section
       p=@tracking.created_at
     .card-section

@@ -1,0 +1,4 @@
+- mapid = SecureRandom.hex
+= image_tag tracking.image.url, usemap: "##{mapid}", width: Paperclip::Geometry.from_file(tracking.image).width, class: "facemap"
+map name=mapid
+  area shape="rect" coords=tracking.coords href=history_path(tracking.label) title="#{tracking.label}" data-maphilight='{"strokeColor":"#{label_color(tracking.label)[1..6]}","strokeWidth":3,"fill":false,"alwaysOn":true}'

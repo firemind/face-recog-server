@@ -1,5 +1,7 @@
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  adapter: mysql2
+  database: facerecog
+  username: facerecog
+  password:  pieviuf2quaePhiemei1ie
   pool: 5
   timeout: 5000

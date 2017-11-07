@@ -8,7 +8,7 @@ table.table
           span.label  style="background-color:#{label_color(tracking.label)}"
             =tracking.label
         td
-          a href=history_path(tracking.label)
-            =image_tag tracking.image.url, style:"border: 5px solid #{label_color(tracking.label)}"
+          a href=history_path(tracking.label) style= "display: inline-block; border: 5px solid #{label_color(tracking.label)}"
+            = render partial: 'shared/tracking_with_map', locals: {tracking: tracking}
         td=tracking.created_at
         td=tracking.location
