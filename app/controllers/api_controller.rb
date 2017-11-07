@@ -49,6 +49,7 @@ class ApiController < ApplicationController
       end
       location = Location.where(name: meta["location"]).first_or_create!
       meta['positions'].each_with_index do |pos, ix|
+        puts pos.inspect
         Tracking.transaction do
           tracking = Tracking.create(
               location: location,
