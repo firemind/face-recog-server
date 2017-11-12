@@ -5,7 +5,7 @@ class Tracking < ApplicationRecord
   do_not_validate_attachment_file_type :image
   validates_attachment_content_type :image, not: true
 
-  def coords
-    [left, top, left+width, top+height].map(&:to_s).join(",")
+  def coords(ratio=1.0)
+    [left, top, left+width, top+height].map{|v| (v*ratio).to_i.to_s}.join(",")
   end
 end

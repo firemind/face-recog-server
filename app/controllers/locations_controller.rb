@@ -8,7 +8,7 @@ class LocationsController < ApplicationController
   def current
     @location = Location.find(params[:id])
     @tracking = @location.trackings.last
-    @history  = Tracking.where(label: @tracking.label).where.not(id: @tracking.id).last(10)
+    @history  = Tracking.where(label: @tracking.label).where.not(id: @tracking.id).last(9)
   end
 
 end

@@ -1,20 +1,16 @@
-h1=@location.name
-- @tracking = @location.trackings.last
-.card
-  .card-divider
-    h1
-      |Last Tracking
-      span.label=@tracking.label
-  = render partial: 'shared/tracking_with_map', locals: {tracking: @tracking}
-  .card-section
-    p=@tracking.created_at
+.row
+  .large-12.columns.text-center
+    h1=@location.name
 
-.row.small-up-5
+.row.small-up-3
   -@history.each do |tracking|
     .column
       .card
         .card-divider
           span.label=tracking.location
-        = image_tag tracking.image.url, width: 200, class: "facemap"
+        = render partial: 'shared/tracking_with_map', locals: {tracking: tracking, target_width: 369}
         .card-section
           p=tracking.created_at
+
+- content_for :header do
+  meta http-equiv="refresh" content="2"
