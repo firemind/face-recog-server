@@ -45,7 +45,7 @@ class ApiController < ApplicationController
       unless embs
         puts "No Embedding sent"
         ec = EmbeddingClient.new
-        embs = ec.embed(params[:image])
+        embs = [ec.embed(params[:image])]
       end
       location = Location.where(name: meta["location"]).first_or_create!
       trackings = []
@@ -70,7 +70,8 @@ class ApiController < ApplicationController
       end
       render json: {
           label: trackings.map(&:label),
-          history_url: trackings.map{|t| history_url(t.label)}
+          history_url: trackings.map{|t| history_url(t.label)},
+          location_url: current_location_url(location),
       }
     else
       render error: "No image given"
