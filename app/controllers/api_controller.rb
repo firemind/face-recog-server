@@ -1,41 +1,5 @@
 require 'fileutils'
 class ApiController < ApplicationController
-  ALIGNED_PATH = "images/aligned"
-  CLASSIFY_ALIGNED_PATH = "tmp/aligned_images/"
-  RAW_PATH = "tmp/raw_images/"
-  def store
-    if params[:image] && params[:label]
-      ec = EmbeddingClient.new
-      emb = ec.embed(params[:image])
-      fmc = FaceMindClient.new
-      celeb = Celeb.where(name: params[:label]).first_or_create!
-      celeb.samples.create(image: params[:image])
-      fmc.store(celeb.id, emb)
-      fmc.train()
-      render json: {
-          image: celeb.samples.first.image.url
-      }
-    else
-      render error: "No image given"
-    end
-  end
-
-  def classify
-    if params[:image]
-      ec = EmbeddingClient.new
-      emb = ec.embed(params[:image])
-      fmc = FaceMindClient.new
-      label, score = fmc.classify(emb)
-      celeb = Celeb.find(label)
-      render json: {
-          label: celeb.to_s,
-          score: score,
-          image: celeb.samples.first.image.url
-      }
-    else
-      render error: "No image given"
-    end
-  end
 
   def track
     if params[:image]
@@ -77,13 +41,5 @@ class ApiController < ApplicationController
       render error: "No image given"
     end
   end
-
-  private
-  
-  def clean_dir(dir)
-    FileUtils.remove_dir dir if File.exists? dir
-    FileUtils.mkdir_p dir
-  end
-
 
 end

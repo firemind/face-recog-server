@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  get 'celebs/index'
 
-  get 'celebs/show'
+  get 'admin/dashboard'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
@@ -16,7 +15,6 @@ Rails.application.routes.draw do
       get :current
     end
   end
-  resources :celebs
 
   root "trackings#last"
 end
