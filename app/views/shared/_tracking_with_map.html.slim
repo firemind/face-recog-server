@@ -1,5 +1,6 @@
 - mapid = SecureRandom.hex
-- real_width = Paperclip::Geometry.from_file(tracking.image).width
+- # real_width = Paperclip::Geometry.from_file(tracking.image).width
+- real_width = 640
 - target_width ||= real_width
 - ratio = target_width.to_f / real_width
 = image_tag tracking.image.url, usemap: "##{mapid}", width: target_width, class: "facemap"
