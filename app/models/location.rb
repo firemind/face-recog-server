@@ -1,5 +1,6 @@
 class Location < ApplicationRecord
-  has_many :trackings
+  has_many :tracked_images
+  has_many :trackings, through: :tracked_images
   validates_presence_of :name
   validates_uniqueness_of :name
 

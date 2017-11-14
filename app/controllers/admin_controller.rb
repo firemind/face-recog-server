@@ -5,7 +5,7 @@ class AdminController < ApplicationController
     @chart_data = @locations.map do |loc|
       {
         name: loc.name,
-        data: (loc.trackings
+        data: (loc.tracked_images
           .where("created_at > ?", 10.hours.ago)
           .group_by_second(:created_at)
           .count)
