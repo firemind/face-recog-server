@@ -3,6 +3,6 @@ task reset: :environment do
   t = Rake::Task["db:reset"]
   t.reenable
   t.invoke
-  FileUtils.rm_r(File.join(Rails.root, "public/system"))
+  FileUtils.rm_r(File.join(Rails.root, "public/system/trackings"))
   TrackingClient.new.reset
 end
