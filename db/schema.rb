@@ -12,23 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20171107134244) do
 
-  create_table "celeb_samples", force: :cascade do |t|
-    t.integer "celeb_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.integer "image_file_size"
-    t.datetime "image_updated_at"
-    t.binary "emb"
-  end
-
-  create_table "celebs", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false

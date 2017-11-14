@@ -10,7 +10,7 @@
           span.label=tracking.location
         = render partial: 'shared/tracking_with_map', locals: {tracking: tracking, target_width: 369}
         .card-section
-          p=tracking.created_at
+          =link_to tracking.created_at, tracking
 
 - content_for :header do
   meta http-equiv="refresh" content="2"
