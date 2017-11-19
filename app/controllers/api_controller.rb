@@ -1,5 +1,6 @@
 require 'fileutils'
 class ApiController < ApplicationController
+  include LabelsHelper
 
   def track
     if params[:image]
@@ -39,6 +40,7 @@ class ApiController < ApplicationController
           label: trackings.map(&:label),
           history_url: trackings.map{|t| history_url(t.label)},
           location_url: current_location_url(location),
+          colors: trackings.map(&:label).map{|l| label_color(l)[1..6]},
       }
     else
       render error: "No image given"
