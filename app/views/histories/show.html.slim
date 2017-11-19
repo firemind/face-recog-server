@@ -1,9 +1,3 @@
 h1= "History for #{@label}"
 
-table
-  - @trackings.each do |tracking|
-    tr
-      td=tracking.label
-      td
-        a href=history_path(tracking.label)
-          =image_tag tracking.image.url
+= render partial: 'histories/list', locals: {trackings: @trackings}

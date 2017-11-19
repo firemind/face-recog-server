@@ -8,4 +8,7 @@ table
           =label
       td
         a href=history_path(label)
-          =image_tag Tracking.where(label: label).last.image.url, style:"border: 5px solid #{label_color(label)}"
+          .row.medium-up-4.large-up-6
+            - Tracking.where(label: label).last(6).reverse.each do |tracking|
+              .column
+                = render partial: 'shared/tracking_with_map', locals: {tracking: tracking, target_width: 170}

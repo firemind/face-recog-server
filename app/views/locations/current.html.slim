@@ -2,15 +2,7 @@
   .large-12.columns.text-center
     h1=@location.name
 
-.row.medium-up-2.large-up-3
-  -@history.each do |tracking|
-    .column
-      .card
-        .card-divider
-          span.label=tracking.location
-        = render partial: 'shared/tracking_with_map', locals: {tracking: tracking, target_width: 369}
-        .card-section
-          =link_to tracking.created_at, tracking
+= render partial: 'histories/list', locals: {trackings: @history}
 
 - content_for :header do
   meta http-equiv="refresh" content="2"
