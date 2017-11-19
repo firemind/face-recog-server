@@ -1,8 +1,12 @@
 .row
   .large-12.columns.text-center
-    h1=@location.name
+    h1=@loc_name
 
-= render partial: 'histories/list', locals: {trackings: @history}
+- if @location
+  = render partial: 'histories/list', locals: {trackings: @history}
+- else
+  .callout.warning
+    |No Images recorded
 
 - content_for :header do
   meta http-equiv="refresh" content="2"
