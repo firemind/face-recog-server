@@ -38,8 +38,7 @@ class ApiController < ApplicationController
       end
       render json: {
           label: trackings.map(&:label),
-          history_url: trackings.map{|t| history_url(t.label)},
-          location_url: current_location_url(location),
+          location_url: current_location_url(id: location.name),
           colors: trackings.map(&:label).map{|l| label_color(l)[1..6]},
       }
     else

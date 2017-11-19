@@ -3,10 +3,14 @@ class LocationsController < ApplicationController
     @locations = Location.all
   end
   def show
-    @location = Location.find(params[:id])
+    unless @location = Location.where(name: params[:id]).first
+      @location = Location.find(params[:id])
+    end
   end
   def current
-    @location = Location.find(params[:id])
+    unless @location = Location.where(name: params[:id]).first
+      @location = Location.find(params[:id])
+    end
     @tracking = @location.trackings.last
     @history  = Tracking.where(label: @tracking.label).where.not(id: @tracking.id).includes(:tracked_image, :location).order("created_at desc").first(9)
   end

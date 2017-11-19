@@ -15,5 +15,5 @@ table
             a href=history_path(tracking.label) style= "display: inline-block; border: 5px solid #{label_color(tracking.label)}"
               = render partial: 'shared/tracking_with_map', locals: {tracking: tracking, target_width: 400}
         td= loc.trackings.count
-        td= link_to "Show all", location_path(loc), class: "button"
-        td= link_to "Current", current_location_path(loc), class: "button"
+        td= link_to "Show all", location_path(id: loc.name), class: "button"
+        td= link_to "Current", current_location_path(id: loc.name), class: "button"
