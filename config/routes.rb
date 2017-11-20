@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post '/track' => 'api#track'
   resources :histories
   resources :trackings
+  resources :tracked_images
   resources :labels
   resources :locations do
     member do

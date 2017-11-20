@@ -1,0 +1,10 @@
+- mapid = SecureRandom.hex
+- real_width = 640
+- target_width ||= real_width
+- ratio = target_width.to_f / real_width
+- classes = ["facemap"]
+= image_tag tracked_image.image.url, usemap: "##{mapid}", width: target_width, class: classes.join(' ')
+map name=mapid
+  - tracked_image.trackings.each do |tracking|
+    area shape="rect" coords=tracking.coords(ratio) href=history_path(tracking.label) title="#{tracking.label}" data-maphilight='{"strokeColor":"#{label_color(tracking.label)[1..6]}","strokeWidth":3,"fill":false,"alwaysOn":true}'
+
