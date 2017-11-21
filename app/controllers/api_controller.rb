@@ -27,7 +27,8 @@ class ApiController < ApplicationController
               width:  pos['width'],
               height: pos['height'],
               left:   pos['left'],
-              top:    pos['top']
+              top:    pos['top'],
+              emb:    embs[ix]
           )
           label = tc.track(tracking.id, embs[ix])
           tracking.label = label
