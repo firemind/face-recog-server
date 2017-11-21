@@ -1,12 +1,13 @@
 - mapid = SecureRandom.hex
 - # real_width = Paperclip::Geometry.from_file(tracking.image).width
 - real_width = 640
+- real_height= 480
 - target_width ||= real_width
 - ratio = target_width.to_f / real_width
 - classes = ["facemap"]
 - if local_assigns[:extra_classes]
   - classes |= local_assigns[:extra_classes]
-= image_tag tracking.image.url, usemap: "##{mapid}", width: target_width, class: classes.join(' ')
+= image_tag tracking.image.url, usemap: "##{mapid}", width: target_width, height: real_height*ratio, class: classes.join(' ')
 map name=mapid
   area shape="rect" coords=tracking.coords(ratio) href=history_path(tracking.label) title="#{tracking.label}" data-maphilight='{"strokeColor":"#{label_color(tracking.label)[1..6]}","strokeWidth":3,"fill":false,"alwaysOn":true}'
 
