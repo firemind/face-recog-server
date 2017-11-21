@@ -11,16 +11,12 @@ task embed: :environment do
     #   raise "bad dims #{t.inspect}"
     # end
 
-    begin
-      img = img.crop(t.left+(t.width*(1-border_ratio)/2), t.top+(t.height*(1-border_ratio)/2), t.width*border_ratio, t.height*border_ratio).adaptive_resize(desired_size, desired_size)
-      img.write("test.jpg")
-      img = File.new("test.jpg")
-      emb = emb_client.embed(img)
-      t.emb = emb
-      t.save!
-    rescue
-      p t
-    end
+    img = img.crop(t.left+(t.width*(1-border_ratio)/2), t.top+(t.height*(1-border_ratio)/2), t.width*border_ratio, t.height*border_ratio).adaptive_resize(desired_size, desired_size)
+    img.write("test.jpg")
+    img = File.new("test.jpg")
+    emb = emb_client.embed(img)
+    t.emb = emb
+    t.save!
   end
 
 end
