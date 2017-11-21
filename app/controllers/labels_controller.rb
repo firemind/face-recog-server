@@ -5,11 +5,10 @@ class LabelsController < ApplicationController
   def random_recluster
     tc = TrackingClient.new
     tc.reset
-    trackings = Tracking.all.shuffle
+    trackings = Tracking.order("rand()")
     trackings.each do |t|
       emb = t.emb
       resp = tc.track(t.id, emb)
-      puts resp
       t.label = resp
       t.save!
     end

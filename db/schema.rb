@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171121190754) do
+ActiveRecord::Schema.define(version: 20171121223707) do
 
   create_table "locations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20171121190754) do
     t.integer "tracked_image_id", null: false
     t.binary "emb"
     t.index ["created_at"], name: "index_trackings_on_created_at"
+    t.index ["label"], name: "index_trackings_on_label"
     t.index ["tracked_image_id"], name: "index_trackings_on_tracked_image_id"
   end
 
