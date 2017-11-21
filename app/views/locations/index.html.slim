@@ -1,19 +1,14 @@
 h1 Locations
 
-table
-  thead
-    tr
-      th name
-      th last
-      th num
-  tbody
-    - @locations.each do |loc|
-      tr
-        td=loc.name
-        td
-          - if tracking = loc.trackings.last
-            a href=history_path(tracking.label) style= "display: inline-block; border: 5px solid #{label_color(tracking.label)}"
-              = render partial: 'shared/tracking_with_map', locals: {tracking: tracking, target_width: 400}
-        td= loc.trackings.count
-        td= link_to "Show all", location_path(id: loc.name), class: "button"
-        td= link_to "Current", current_location_path(id: loc.name), class: "button"
+.row.medium-up-1.large-up-2
+  - @locations.each do |loc|
+    .column
+      - if tracking = loc.tracked_images.last
+        .card
+          .card-divider
+            span.label=loc
+          = render partial: 'shared/tracked_image_with_map', locals: {tracked_image: tracking, target_width: 568}
+          .button-group.expanded
+            = link_to "Show all #{loc.trackings.count}", location_path(id: loc.name), class: "button"
+            = link_to "Current", current_location_path(id: loc.name), class: "button"
+            = link_to l(tracking.created_at), tracking, class: "button"

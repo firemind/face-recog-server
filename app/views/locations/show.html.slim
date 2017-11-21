@@ -1,12 +1,9 @@
 h1= "Trackings in Location #{@location}"
 
-table.table
-  tbody
-    - @location.trackings.each do |tracking|
-      tr
-        td
-          span.label=tracking.label
-        td
-          a href=history_path(tracking.label)
-            =image_tag tracking.image.url
-        td=link_to tracking.created_at, tracking
+.row.medium-up-1.large-up-2
+  - @location.tracked_images.each do |tracked_image|
+    .column
+      .card
+        = render partial: 'shared/tracked_image_with_map', locals: {tracked_image: tracked_image, target_width: 568}
+      .card-section
+        =link_to tracked_image.created_at, tracked_image

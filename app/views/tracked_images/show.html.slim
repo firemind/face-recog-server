@@ -1,0 +1,12 @@
+- if @tracked_image
+  .card
+    = render partial: 'shared/tracked_image_with_map', locals: {tracked_image: @tracked_image}
+    .card-section
+      p=@tracked_image.created_at
+    .card-section
+      p
+        b
+          |Location:
+          =<@tracked_image.location
+- else
+  p No trackings yet
