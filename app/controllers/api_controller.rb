@@ -18,6 +18,7 @@ class ApiController < ApplicationController
         embs = [ec.embed(params[:image])]
       end
       trackings = []
+      tc = TrackingClient.new
       meta['positions'].each_with_index do |pos, ix|
         puts pos.inspect
         Tracking.transaction do
@@ -28,10 +29,8 @@ class ApiController < ApplicationController
               left:   pos['left'],
               top:    pos['top']
           )
-          tc = TrackingClient.new
           label = tc.track(tracking.id, embs[ix])
           tracking.label = label
-          puts tracking.inspect
           tracking.save!
           trackings << tracking
         end

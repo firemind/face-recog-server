@@ -10,7 +10,12 @@ Rails.application.routes.draw do
   resources :histories
   resources :trackings
   resources :tracked_images
-  resources :labels
+  resources :labels do
+    collection do
+      patch :random_recluster
+    end
+  end
+
   resources :locations do
     member do
       get :current

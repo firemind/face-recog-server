@@ -1,12 +1,12 @@
 h1 Labels
 
 table
-  - @labels.each do |label|
+  - @labels.each do |label, count|
     tr
       td
         span.label style="background-color:#{label_color(label)}"
           b=label
-          =< "(#{Tracking.where(label: label).count})"
+          =< "(#{count})"
       td
         a href=history_path(label)
           .row.medium-up-4.large-up-6

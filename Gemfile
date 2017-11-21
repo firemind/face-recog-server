@@ -32,6 +32,8 @@ gem 'jquery-rails'
 gem 'foundation-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'coffee-rails'
+gem 'kmeans-clusterer'
+gem 'rmagick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
