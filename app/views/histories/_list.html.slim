@@ -3,7 +3,7 @@
     .column
       .card
         .card-divider
-          span.label=tracking.location
+          span.label style="background-color:#{location_color(tracking.location)}"=tracking.location
         = render partial: 'shared/tracking_with_map', locals: {tracking: tracking, target_width: 369}
         .card-section
           =link_to tracking.created_at, tracking

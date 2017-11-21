@@ -5,7 +5,8 @@ table
     tr
       td
         span.label style="background-color:#{label_color(label)}"
-          =label
+          b=label
+          =< "(#{Tracking.where(label: label).count})"
       td
         a href=history_path(label)
           .row.medium-up-4.large-up-6

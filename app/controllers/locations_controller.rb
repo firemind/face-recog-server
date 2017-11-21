@@ -14,7 +14,7 @@ class LocationsController < ApplicationController
       base_scope = Tracking.where(label: @tracking.label).
           where.not(id: @tracking.id).
           includes(:tracked_image, :location).
-          order("trackings.created_at asc")
+          order("rand()")
       num_images = 6
       @history  = base_scope.
           joins(:tracked_image).
