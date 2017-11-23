@@ -14,4 +14,5 @@
         a href="/admin/dashboard" Dashboard
   .top-bar-right
     ul.menu
+      li= link_to "Ordered Recluster!", ordered_recluster_labels_path, method: :patch, class: "button"
       li= link_to "Random Recluster!", random_recluster_labels_path, method: :patch, class: "button"

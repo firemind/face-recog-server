@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :labels do
     collection do
       patch :random_recluster
+      patch :ordered_recluster
     end
   end
 
