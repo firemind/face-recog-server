@@ -6,11 +6,15 @@ class LabelsController < ApplicationController
     tc = TrackingClient.new
     tc.reset
     trackings = Tracking.order("rand()")
-    trackings.each do |t|
-      emb = t.emb
-      resp = tc.track(t.id, emb)
-      t.label = resp
-      t.save!
+    trackings.find_in_batches(batch_size: 500) do |batch|
+      embs= batch.map &:emb
+      ids = batch.map &:id
+      resp = tc.track_batch(ids, embs)
+      resp.each_with_index do |l,i|
+        t = batch[i]
+        t.label = l
+        t.save!
+      end
     end
 
     redirect_to labels_path
